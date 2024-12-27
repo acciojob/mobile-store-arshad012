@@ -31,7 +31,7 @@ const Products = () => {
             <div>
                 {
                     data.map((item) => (
-                        <Link key={item.id} to={'/product/'+item.id}>
+                        <Link key={item.id} to={'/products/'+item.id}>
                             <div className="item">
                                 <img src={item.image} alt={item.title} width={200}/>
                                 <p>{item.category}</p>
