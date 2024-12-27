@@ -1,13 +1,20 @@
 
-import React from "react";
+import React, {useEffect} from "react";
 import './../styles/App.css';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import Products from "../Pages/Products";
+import SingleProduct from "../Pages/SingleProduct";
 
 const App = () => {
+
   return (
-    <div>
-        {/* Do not remove the main div */}
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path='/' component={Products}/> 
+        <Route path='/product/:id' component={SingleProduct}/> 
+      </Switch>
+    </BrowserRouter>
   )
 }
 
-export default App
+export default App;
