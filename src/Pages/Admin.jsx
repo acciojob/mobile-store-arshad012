@@ -3,7 +3,7 @@ import regeneratorRuntime from "regenerator-runtime";
 import { Link } from 'react-router-dom';
 import { ItemsData } from "../Utils/ItemsData";
 
-const Products = () => {
+const Admin = () => {
     const [data, setData] = useState(ItemsData);
 
     /*
@@ -14,7 +14,6 @@ const Products = () => {
             async function getProducts() {
                 const response = await fetch('https://fakestoreapi.com/products');
                 const res = await response.json();
-                console.log('res:', res)
                 setLoading(false);
                 setData(res);
             }
@@ -22,31 +21,28 @@ const Products = () => {
             getProducts();
         } catch (error) {
             setLoading(false);
-            setError(true);
             console.log('error:', error);
         }
 
-        return () => {
-            console.log('cleaup called');
-            setLoading(false);
-            setError(true);
-        }
+    }, [])
+    */
 
-      }, [])
-      */
+    const handleDelete = (id) => {
+        const dataAfterDelete = data.filter((item) => item.id != id);
+        setData(dataAfterDelete);
+    }
 
     return (
         <div>
-            <h1>Products</h1>
             <div>
                 {
                     data.map((item) => (
-                        <div className="item" key={item.id}>
-                            <img src={item.image} alt={item.title} width={150}/>
-                            <h3>{item.title}</h3>
-                            <button className="btn"><Link key={item.id} to={'/products/'+item.id}>Buy</Link></button>
+                        <div className="item admin-page-items" key={item.id}>
+                            <img src={item.image} alt={item.title} width={70} />
+                            <p>{item.title}</p>
+                            <button className="btn"><Link to={'/products/' + item.id}>Actions</Link></button>
+                            <button className="btn" onClick={() => handleDelete(item.id)}>Delete</button>
                         </div>
-
                     ))
                 }
             </div>
@@ -54,4 +50,4 @@ const Products = () => {
     )
 }
 
-export default Products;
+export default Admin;

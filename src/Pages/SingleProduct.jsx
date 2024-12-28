@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from "react";
 import regeneratorRuntime from "regenerator-runtime";
 import { Link, useParams } from 'react-router-dom';
+import { ItemsData } from "../Utils/ItemsData";
 
 const SingleProduct = () => {
-    const [data, setData] = useState({});
-    const [loading, setLoading] = useState(false);
     const { id } = useParams();
+    let data = {};
 
+    for(let el of ItemsData) {
+        if(el.id == id) {
+            data = el;
+            break;
+        }
+    }
+
+    /*
     useEffect(() => {
         setLoading(true);
 
@@ -25,8 +33,9 @@ const SingleProduct = () => {
         }
 
     }, [])
+    */
 
-    return loading ? <h1>Loading....</h1> : (
+    return (
         <div className="item">
             <div>
                 <img src={data.image} alt={data.title} width={200} />
