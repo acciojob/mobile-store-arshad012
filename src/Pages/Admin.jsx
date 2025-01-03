@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import regeneratorRuntime from "regenerator-runtime";
 import { Link } from 'react-router-dom';
-import { ItemsData } from "../Utils/ItemsData";
+// import { ItemsData } from "../Utils/ItemsData";
 
 const Admin = () => {
-    const [data, setData] = useState(ItemsData);
+    const [data, setData] = useState([]);
+
+     useEffect(() => {
+        let data = JSON.parse(localStorage.getItem('ItemsData'));
+        setData(data);
+    },[])
 
     /*
     useEffect(() => {
@@ -40,7 +45,7 @@ const Admin = () => {
                         <div className="item admin-page-items" key={item.id}>
                             <img src={item.image} alt={item.title} width={70} />
                             <p>{item.title}</p>
-                            <button className="btn"><Link to={'/products/' + item.id}>Actions</Link></button>
+                            <button className="btn"><Link to={'/admin/products/'+item.id}>Actions</Link></button>
                             <button className="btn" onClick={() => handleDelete(item.id)}>Delete</button>
                         </div>
                     ))

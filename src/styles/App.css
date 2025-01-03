@@ -7,16 +7,12 @@
     margin-bottom: 30px;
     width: 80%;
 }
-.navLinks {
+nav {
     display: flex;
     justify-content: space-between;
     width: 300px;
     margin: auto;
     margin-bottom: 20px;
-}
-
-.navLinks li {
-    list-style: none;
 }
 
 .admin-page-items {

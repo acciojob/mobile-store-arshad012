@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from "react";
 import regeneratorRuntime from "regenerator-runtime";
 import { Link } from 'react-router-dom';
-import { ItemsData } from "../Utils/ItemsData";
+// import { ItemsData } from "../Utils/ItemsData";
 
 const Products = () => {
-    const [data, setData] = useState(ItemsData);
+    const [data, setData] = useState([]);
+
+    // localStorage.setItem('ItemsData', JSON.stringify(ItemsData));
+
+    useEffect(() => {
+        let data = JSON.parse(localStorage.getItem('ItemsData'));
+        setData(data);
+    },[])
+
 
     /*
     useEffect(() => {
